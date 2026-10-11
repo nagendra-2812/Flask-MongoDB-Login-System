@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask + MongoDB Login System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Flask + MongoDB Login System</h1>
+    <h2>KIET Group of Institutions</h2>
+    <p>Registration, Login, CRUD and MongoDB Query Demonstration</p>
+    <div class="buttons">
+        <a href="{{ url_for('login') }}"><button>Login</button></a>
+        <a href="{{ url_for('register') }}"><button>Register</button></a>
+        <a href="{{ url_for('users_page') }}"><button>View Users</button></a>
+        <a href="{{ url_for('search') }}"><button>Search</button></a>
+        <a href="{{ url_for('query_demo') }}"><button>MongoDB Query Demo</button></a>
+        <a href="{{ url_for('health') }}"><button>Health Check</button></a>
+    </div>
+</div>
+</body>
+</html>

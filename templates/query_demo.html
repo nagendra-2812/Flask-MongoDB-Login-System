@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MongoDB Query Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container wide">
+<h1>MongoDB Complete Query Demo</h1>
+<p>This page sends different MongoDB queries through Flask and PyMongo.</p>
+
+<div class="query-grid">
+<form method="POST"><input type="hidden" name="operation" value="find"><button>1. find()</button></form>
+<form method="POST">
+    <input type="hidden" name="operation" value="findOne">
+    <input name="username" placeholder="rahul1123" required><button>2. find_one()</button>
+</form>
+
+<form method="POST"><input type="hidden" name="operation" value="gt"><input type="number" name="age" value="21"><button>3. $gt</button></form>
+<form method="POST"><input type="hidden" name="operation" value="lt"><input type="number" name="age" value="22"><button>4. $lt</button></form>
+<form method="POST"><input type="hidden" name="operation" value="gte"><input type="number" name="age" value="22"><button>5. $gte</button></form>
+<form method="POST"><input type="hidden" name="operation" value="lte"><input type="number" name="age" value="22"><button>6. $lte</button></form>
+<form method="POST"><input type="hidden" name="operation" value="in"><button>7. $in (CSE or IT)</button></form>
+<form method="POST"><input type="hidden" name="operation" value="ne"><button>8. $ne (not CSE)</button></form>
+<form method="POST"><input type="hidden" name="operation" value="projection"><button>9. Projection</button></form>
+<form method="POST"><input type="hidden" name="operation" value="sort_asc"><button>10. Sort Age ASC</button></form>
+<form method="POST"><input type="hidden" name="operation" value="sort_desc"><button>11. Sort Age DESC</button></form>
+<form method="POST"><input type="hidden" name="operation" value="limit"><input type="number" name="number" value="2" min="1"><button>12. limit()</button></form>
+<form method="POST"><input type="hidden" name="operation" value="array"><button>13. Array: MongoDB skill</button></form>
+<form method="POST"><input type="hidden" name="operation" value="nested"><button>14. Nested: Ghaziabad</button></form>
+<form method="POST"><input type="hidden" name="operation" value="cursor"><button>15. Cursor</button></form>
+<form method="POST"><input type="hidden" name="operation" value="index"><button>16. Create Unique Index</button></form>
+<form method="POST"><input type="hidden" name="operation" value="show_indexes"><button>17. Show Indexes</button></form>
+</div>
+
+<hr>
+<h2>{{ result_title }}</h2>
+{% if message %}<p class="message">{{ message }}</p>{% endif %}
+
+{% if result %}
+<table>
+<tr>
+<th>Name</th><th>Username</th><th>Age</th><th>Department</th><th>Skills</th><th>Address</th>
+</tr>
+{% for item in result %}
+<tr>
+<td>{{ item.name if item.name is defined else "" }}</td>
+<td>{{ item.username if item.username is defined else "" }}</td>
+<td>{{ item.age if item.age is defined else "" }}</td>
+<td>{{ item.department if item.department is defined else "" }}</td>
+<td>{{ item.skills if item.skills is defined else "" }}</td>
+<td>{{ item.address if item.address is defined else "" }}</td>
+</tr>
+{% endfor %}
+</table>
+{% elif result is not none and not message %}
+<p>No matching documents found.</p>
+{% endif %}
+
+<p><a href="{{ url_for('home') }}">Home</a> | <a href="{{ url_for('users_page') }}">Users</a></p>
+</div>
+</body>
+</html>

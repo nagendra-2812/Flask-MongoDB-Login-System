@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search User</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Search User</h1>
+    <form method="POST" action="{{ url_for('search') }}" class="form-card">
+        <label>Enter Username</label>
+        <input type="text" name="username" placeholder="rahul1123" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if user %}
+    <div class="result">
+        <h2>User Found</h2>
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Age:</strong> {{ user.age }}</p>
+        <p><strong>Department:</strong> {{ user.department }}</p>
+        <p><strong>Skills:</strong> {{ user.skills | join(', ') }}</p>
+        <p><strong>City:</strong> {{ user.address.city }}</p>
+    </div>
+    {% endif %}
+
+    <p><a href="{{ url_for('home') }}">Back to Home</a></p>
+</div>
+</body>
+</html>

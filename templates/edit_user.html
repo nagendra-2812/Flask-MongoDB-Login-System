@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit User</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Edit User</h1>
+    <form method="POST" class="form-card">
+        <label>Name</label>
+        <input type="text" name="name" value="{{ user.name }}" required>
+
+        <label>Username</label>
+        <input type="text" name="username" value="{{ user.username }}" required>
+
+        <button type="submit">Update User</button>
+    </form>
+    <p><a href="{{ url_for('users_page') }}">Back to Users</a></p>
+</div>
+</body>
+</html>
